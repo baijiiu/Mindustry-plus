@@ -98,3 +98,16 @@ task deploy(type: Jar){
         }
     }
 }
+
+tasks.register("file move"){
+    copy {
+        from 'D:\\MIndustry-plus\\build\\libs\\MIndustry-plus.jar'
+        into 'C:\\Users\\Administrator\\AppData\\Roaming\\Mindustry\\mods'
+    }
+}
+
+task startTest(type: Exec) {
+    dependsOn deploy
+    dependsOn("file move")
+    commandLine 'cmd', '/c', "start", "C:\\Users\\Administrator\\Desktop\\mindustry-windows-64-bit\\Mindustry.exe"
+}
